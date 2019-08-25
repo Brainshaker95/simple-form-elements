@@ -1,0 +1,22 @@
+{
+  "name": "simple-select",
+  "version": "1.0.0",
+  "description": "Stylable select plugin",
+  "main": "index.js",
+  "author": "Patrick Rupp",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "eslint": "^6.2.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "webpack": "^4.38.0",
+    "webpack-cli": "^3.3.6"
+  },
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "start": "webpack --watch"
+  },
+  "dependencies": {}
+}
