@@ -1,8 +1,7 @@
 {
-  "name": "simple-select",
+  "name": "simple-form-elements",
   "version": "1.0.0",
-  "description": "Stylable select plugin",
-  "main": "index.js",
+  "description": "Stylable form elements plugin",
   "author": "Patrick Rupp",
   "license": "MIT",
   "private": true,
@@ -15,8 +14,6 @@
   },
   "scripts": {
     "build": "webpack",
-    "watch": "webpack --watch",
-    "start": "webpack --watch"
-  },
-  "dependencies": {}
+    "watch": "webpack --watch"
+  }
 }
