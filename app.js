@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
   files.forEach((file) => {
     simpleFile.init(file, {
       allowClear: true,
-      placeholder: 'YEAH',
+      placeholder: 'Simple fileinput 2',
     });
 
     file.addEventListener('change', (event) => {
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
       allowClear: true,
       closeOnDocumentClick: true,
       closeOnOpenAnother: false,
-      placeholder: 'YEAH',
+      placeholder: 'Simple Select',
     });
 
     select.addEventListener('change', (event) => {
