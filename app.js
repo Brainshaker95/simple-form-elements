@@ -1,5 +1,5 @@
 // File showing example usage
-
+import './src/scss/all.scss';
 import simpleSelect from './src/js/simple-select/simple-select';
 import simpleCheckbox from './src/js/simple-checkbox/simple-checkbox';
 import simpleRadio from './src/js/simple-radio/simple-radio';
