@@ -8,8 +8,6 @@ $simple-radio-button-animation-speed: $simple-animation-speed !default;
 
 @mixin simple-radio-button($namespace: $simple-namespace, $prefix: #{$namespace}radio) {
   .#{$prefix}-container {
-    --disabled-color: #cccccc;
-
     display: inline-block;
     position: relative;
     width: $simple-radio-button-size;
