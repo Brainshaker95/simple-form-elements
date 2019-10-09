@@ -1,11 +1,11 @@
-export default (radioTag) => {
+export default (radioTag, opts) => {
   const theRadioTag = radioTag;
 
   const radioContainer = document.createElement('div');
   const radiomark = document.createElement('i');
 
-  radioContainer.classList.add('radio-container');
-  radiomark.classList.add('radiomark');
+  radioContainer.classList.add(opts.classRadioContainer);
+  radiomark.classList.add(opts.classRadiomark);
 
   theRadioTag.parentNode.insertBefore(radioContainer, theRadioTag);
   radioContainer.appendChild(theRadioTag);

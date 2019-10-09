@@ -1,6 +1,7 @@
 import attachHandlers from '../module/attach-handlers';
 import generateMarkup from '../module/generate-markup';
 import config from '../config';
+import addCssClasses from '../../cssClasses';
 
 export default (file, opts) => {
   if (!file) {
@@ -8,10 +9,10 @@ export default (file, opts) => {
     return;
   }
 
-  const options = {
+  const options = addCssClasses({
     ...config,
     ...opts,
-  };
+  });
 
   generateMarkup(file, options);
   attachHandlers(file, options);

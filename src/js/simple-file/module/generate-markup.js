@@ -4,7 +4,7 @@ export default (fileTag, opts) => {
   const fileContainer = document.createElement('div');
   const path = document.createElement('div');
 
-  fileContainer.classList.add('file-container');
+  fileContainer.classList.add(opts.classFileContainer);
   path.classList.add('path');
 
   theFileTag.parentNode.insertBefore(fileContainer, theFileTag);
