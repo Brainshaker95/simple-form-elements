@@ -1,6 +1,6 @@
 import attachHandlers from '../module/attach-handlers';
 import generateMarkup from '../module/generate-markup';
-import addCssClasses from '../../cssClasses';
+import addCssClasses from '../../css-classes';
 
 export default (checkbox, opts) => {
   if (!checkbox) {

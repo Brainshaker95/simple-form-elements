@@ -1,7 +1,7 @@
 import attachHandlers from '../module/attach-handlers';
 import generateMarkup from '../module/generate-markup';
 import config from '../config';
-import addCssClasses from '../../cssClasses';
+import addCssClasses from '../../css-classes';
 
 export default (file, opts) => {
   if (!file) {
