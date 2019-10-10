@@ -1,4 +1,4 @@
-export default (radio) => {
+export default (radio, options) => {
   if (!radio) {
     console.error('Error: Missing required parameter 1 \'radio\'');
     return;
@@ -8,7 +8,7 @@ export default (radio) => {
     return;
   }
 
-  const radioContainers = document.querySelectorAll(`.radio-container[name="${radio.getAttribute('name')}"]`);
+  const radioContainers = document.querySelectorAll(`.${options.classRadioContainer}[name="${radio.getAttribute('name')}"]`);
 
   Array.from(radioContainers).forEach((container) => {
     container.firstChild.removeAttribute('checked');

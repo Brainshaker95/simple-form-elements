@@ -1,6 +1,6 @@
 import check from '../methods/check';
 
-export default (radioTag) => {
+export default (radioTag, options) => {
   const radioContainer = radioTag.parentNode;
 
   radioContainer.addEventListener('click', (event) => {
@@ -8,6 +8,6 @@ export default (radioTag) => {
       return;
     }
 
-    check(event.currentTarget.firstChild);
+    check(event.currentTarget.firstChild, options);
   });
 };
