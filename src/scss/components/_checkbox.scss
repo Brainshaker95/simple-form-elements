@@ -1,0 +1,51 @@
+
+$simple-checkbox-primary-color: $simple-primary-color !default;
+$simple-checkbox-hover-color: $simple-hover-color !default;
+$simple-checkbox-disabled-color: $simple-disabled-color !default;
+$simple-checkbox-size: $simple-button-size !default;
+$simple-checkbox-border-radius: $simple-border-radius;
+$simple-checkbox-animation-speed: $simple-animation-speed !default;
+
+@mixin simple-checkbox($namespace: $simple-namespace, $prefix: #{$namespace}checkbox) {
+  .#{$prefix}-container {
+    display: inline-block;
+    position: relative;
+    width: $simple-checkbox-size;
+    height: $simple-checkbox-size;
+    background-color: $simple-checkbox-primary-color;
+    border-radius: $simple-checkbox-border-radius;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $simple-checkbox-hover-color;
+    }
+
+    &.disabled {
+      background-color: $simple-checkbox-disabled-color;
+      cursor: default;
+    }
+
+    .#{$namespace}checkmark {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity $simple-checkbox-animation-speed ease;
+      &::after {
+        position: absolute;
+        content: $simple-checkmark-icon;
+        top: 50%;
+        left: 50%;
+        width: $simple-checkbox-size * $simple-checkmark-multiplier;
+        height: $simple-checkbox-size * $simple-checkmark-multiplier;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+
+    input[type="checkbox"][checked] + .#{$namespace}checkmark {
+      opacity: 1;
+    }
+  }
+}

@@ -9,7 +9,7 @@ export default (selectTag, opts) => {
   let clearButton;
   let selection;
 
-  selectContainer.classList.add('select-container');
+  selectContainer.classList.add(opts.classSelectContainer);
   selectionDiv.classList.add('selection');
   fakeSelect.classList.add('select');
 

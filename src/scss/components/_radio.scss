@@ -1,0 +1,53 @@
+$simple-radio-button-primary-color: $simple-primary-color !default;
+$simple-radio-button-hover-color: $simple-hover-color !default;
+$simple-radio-disabled-color: $simple-disabled-color !default;
+$simple-radio-button-size: $simple-button-size !default;
+$simple-radio-border-radius: $simple-border-radius !default;
+$simple-radio-button-icon-color: salmon !default;
+$simple-radio-button-animation-speed: $simple-animation-speed !default;
+
+@mixin simple-radio-button($namespace: $simple-namespace, $prefix: #{$namespace}radio) {
+  .#{$prefix}-container {
+    display: inline-block;
+    position: relative;
+    width: $simple-radio-button-size;
+    height: $simple-radio-button-size;
+    background-color: $simple-radio-button-primary-color;
+    border-radius: $simple-radio-border-radius;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $simple-radio-button-hover-color;
+    }
+
+    &.disabled {
+      background-color: $simple-radio-disabled-color;
+      cursor: default;
+    }
+
+    .#{$namespace}radiomark {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity $simple-radio-button-animation-speed ease;
+
+      &::after {
+        position: absolute;
+        content: '';
+        top: 50%;
+        left: 50%;
+        width: $simple-radio-button-size * $simple-radiomark-multiplier;
+        height: $simple-radio-button-size * $simple-radiomark-multiplier;
+        background-color: $simple-radio-button-icon-color;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    input[type="radio"][checked] + .#{$namespace}radiomark {
+      opacity: 1;
+    }
+  }
+}
