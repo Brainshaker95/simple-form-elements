@@ -97,3 +97,17 @@ const opts = {
 
 ## Events
   * init
+
+# Install
+
+## Requirements
+  * Any Bash
+  * Yarn
+
+## Commands
+```shell
+  yarn
+  yarn run webpack
+```
+
+Open index.html in any browser to test it
