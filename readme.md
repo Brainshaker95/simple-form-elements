@@ -1,18 +1,32 @@
 # Simple-form-elements
 
+## Installing / Getting started
+
+### Requirements
+  * Any Bash
+  * Yarn
+
+### Commands
+```shell
+  yarn
+  yarn run webpack
+```
+
+Open index.html in any browser to test it
+
 ## Common options
 ```js
 const opts = {
 // adds namespace to all css classes, if they are not overriden from below
 classNamespace: 'simple-',
 
-// class for checkmark icon 
+// class for checkmark icon
 classCheckmark: 'checkmark',
 
 // class for radiomark icon
 classRadiomark: 'radiomark',
 
-// class of the container of the checkbox element 
+// class of the container of the checkbox element
 classCheckboxContainer: 'checkbox-container',
 
 // class of the container of the file input element
@@ -26,8 +40,8 @@ classSelectContainer: 'select-container',
 }
 ```
 
-# simple-select
-## Methods
+## simple-select
+### Methods
 ```js
   init(select, opts)
   open(select)
@@ -36,7 +50,7 @@ classSelectContainer: 'select-container',
   destroy(select)
 ```
 
-## Options
+### Options
 ```js
 const opts = {
   animationSpeed: 250,
@@ -50,15 +64,15 @@ const opts = {
 
 'data-placeholder' attribute on select tag also works
 
-## Events
+### Events
   * init
   * open
   * close
   * clear
   * destroy
 
-# simple-checkbox
-## Methods
+## simple-checkbox
+### Methods
 ```js
   init(checkbox, opts)
   check(checkbox)
@@ -67,25 +81,25 @@ const opts = {
 ## Events
   * init
 
-# simple-radio
-## Methods
+## simple-radio
+### Methods
 ```js
   init(radio, opts)
   check(radio)
 ```
 
-## Events
+### Events
   * init
 
-# simple-file
-## Methods
+## simple-file
+### Methods
 ```js
   init(file, opts)
   select(file)
   clear(file, opts)
 ```
 
-## Options
+### Options
 ```js
 const opts = {
   allowClear: false,
@@ -95,19 +109,5 @@ const opts = {
 
 'data-placeholder' attribute on file tag also works
 
-## Events
+### Events
   * init
-
-# Install
-
-## Requirements
-  * Any Bash
-  * Yarn
-
-## Commands
-```shell
-  yarn
-  yarn run webpack
-```
-
-Open index.html in any browser to test it
