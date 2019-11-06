@@ -4,14 +4,19 @@ export default (selectTag, opts) => {
   const selectionDiv = document.createElement('div');
   const fakeSelect = document.createElement('div');
   const optionTags = theSelectTag.getElementsByTagName('option');
-  const selectedOption = Array.from(optionTags).filter((optionTag) => optionTag.selected);
+  const selectedOptions = Array.from(optionTags).filter((optionTag) => optionTag.hasAttribute('selected'));
   const hasPlaceholder = theSelectTag.hasAttribute('data-placeholder');
+  const isMultiple = theSelectTag.hasAttribute('multiple');
   let clearButton;
   let selection;
 
   selectContainer.classList.add(opts.classSelectContainer);
   selectionDiv.classList.add('selection');
   fakeSelect.classList.add('select');
+
+  if (isMultiple) {
+    fakeSelect.classList.add('mutiple');
+  }
 
   theSelectTag.parentNode.insertBefore(selectContainer, theSelectTag);
   selectContainer.appendChild(theSelectTag);
@@ -26,12 +31,16 @@ export default (selectTag, opts) => {
 
   fakeSelect.appendChild(selectionDiv);
 
-  if (selectedOption[0].hasAttribute('selected')) {
-    selection = selectedOption[0].value;
+  if (selectedOptions.length) {
+    selection = selectedOptions[0].value;
     selectionDiv.setAttribute('value', selection);
-  } else {
-    theSelectTag.value = null;
+  }
 
+  if (isMultiple && selectedOptions.length > 1) {
+    selection += '...';
+  }
+
+  if (!selection || !opts.showValue) {
     if (hasPlaceholder) {
       selection = theSelectTag.getAttribute('data-placeholder');
     } else {
@@ -70,17 +79,14 @@ export default (selectTag, opts) => {
 
   fakeSelect.setAttribute('data-height', fakeSelect.offsetHeight);
 
-  const height = selectionDiv.offsetHeight;
-
-  fakeSelect.style.height = height;
-  fakeSelect.style.height = selectionDiv.offsetHeight;
-  fakeSelect.style.overflow = 'hidden';
-  fakeSelect.style.transition = `height ${opts.animationSpeed}ms ${opts.animationType}`;
+  Object.assign(fakeSelect.style, {
+    height: selectionDiv.offsetHeight,
+    overflow: 'hidden',
+    transition: `height ${opts.animationSpeed}ms ${opts.animationType}`,
+  });
 
   theSelectTag.style.display = 'none';
-
   selectionDiv.style.boxSizing = 'border-box';
-  selectionDiv.style.height = height;
 
   if (!hasPlaceholder) {
     theSelectTag.setAttribute('data-placeholder', opts.placeholder || '...');

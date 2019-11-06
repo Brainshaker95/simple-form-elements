@@ -1,20 +1,54 @@
 # Simple-form-elements
 
-## Installing / Getting started
+## Table of contents
 
-### Requirements
-  * Any Bash
+Getting Started
+- [Prerequisites](#prerequisites)
+- [Installing](#installing)
+- [Commands](#commands)
+
+Usage
+- [Implementation](#implementation)
+- [Common options](#common-options)
+
+Simple Form Elements
+- [Simple Select](#simple-select)
+- [Simple Checkbox](#simple-checkbox)
+- [Simple Radio](#simple-radio)
+- [Simple File](#simple-file)
+
+___
+
+## Prerequisites
+
   * Yarn
 
-### Commands
+## Installing
+
 ```shell
   yarn
-  yarn run webpack
 ```
 
-Open index.html in any browser to test it
+## Commands
+
+```shell
+  # Build project (development)
+  yarn run dev
+
+  # Build project (production)
+  yarn run build
+
+  # Watch js and css files
+  yarn run watch
+```
+___
+
+## Implementation
+
+See [index.html](index.html) and [app.js](app.js) for implementation examples.
 
 ## Common options
+
 ```js
 const opts = {
 // adds namespace to all css classes, if they are not overriden from below
@@ -40,8 +74,12 @@ classSelectContainer: 'select-container',
 }
 ```
 
+___
+
 ## simple-select
+
 ### Methods
+
 ```js
   init(select, opts)
   open(select)
@@ -51,6 +89,7 @@ classSelectContainer: 'select-container',
 ```
 
 ### Options
+
 ```js
 const opts = {
   animationSpeed: 250,
@@ -59,47 +98,66 @@ const opts = {
   closeOnDocumentClick: true,
   closeOnOpenAnother: true,
   placeholder: null,
+  showValue: true,
 }
 ```
 
-'data-placeholder' attribute on select tag also works
+> 'data-placeholder' attribute on select tag also works
 
 ### Events
+
   * init
+  * change
   * open
   * close
   * clear
   * destroy
 
+___
+
 ## simple-checkbox
+
 ### Methods
+
 ```js
   init(checkbox, opts)
   check(checkbox)
 ```
 
 ## Events
+
   * init
+  * change
+
+___
 
 ## simple-radio
+
 ### Methods
+
 ```js
   init(radio, opts)
-  check(radio)
+  check(radio, opts)
 ```
 
 ### Events
+
   * init
+  * change
+
+___
 
 ## simple-file
+
 ### Methods
+
 ```js
   init(file, opts)
-  select(file)
   clear(file, opts)
 ```
 
 ### Options
+
 ```js
 const opts = {
   allowClear: false,
@@ -107,7 +165,9 @@ const opts = {
 }
 ```
 
-'data-placeholder' attribute on file tag also works
+> 'data-placeholder' attribute on file tag also works
 
 ### Events
   * init
+  * change
+  * clear

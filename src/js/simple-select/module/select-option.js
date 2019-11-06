@@ -1,37 +1,59 @@
-export default (target, opts) => {
+import closeSelects from './close-selects';
+
+export default (event, opts) => {
+  const target = event.currentTarget;
   const fakeSelect = target.parentNode;
-  const selectContainer = fakeSelect.parentNode;
-  const selectTag = selectContainer.firstChild;
-  const optionTags = selectTag.options;
+  const selectTag = fakeSelect.previousElementSibling;
+  const optionTags = Array.from(selectTag.options);
   const selectionDiv = fakeSelect.querySelector('.selection');
-  const selection = selectionDiv.getAttribute('value');
   const selectedValue = target.getAttribute('value');
-  const selectedOption = optionTags[selectTag.selectedIndex];
+  const isMultiple = selectTag.hasAttribute('multiple');
+  const singleSelection = (isMultiple && !event.ctrlKey) || !isMultiple;
 
-  if (target.classList.contains('disabled')) {
+  if ((selectedValue === selectionDiv.getAttribute('value') && !isMultiple)
+    || target.classList.contains('disabled')) {
     return;
   }
 
-  if (selectedValue === selection) {
-    return;
+  const selectedOptions = () => optionTags.filter((optionTag) => optionTag.hasAttribute('selected'));
+
+  const targetOption = optionTags.filter((optionTag) => optionTag.value === selectedValue)[0];
+  let targetValue = targetOption.value;
+
+  if (singleSelection) {
+    Array.from(fakeSelect.children).forEach((option) => option.classList.remove('selected'));
+    optionTags.forEach((optionTag) => optionTag.removeAttribute('selected'));
   }
 
-  const targetOption = Array.from(optionTags).filter((optionTag) => optionTag.getAttribute('value') === selectedValue);
+  if (isMultiple && target.classList.contains('selected') && event.ctrlKey) {
+    target.classList.remove('selected');
+    targetOption.removeAttribute('selected');
 
-  Array.from(fakeSelect.children).forEach((child) => child.classList.remove('selected'));
+    const selectedOpts = selectedOptions();
 
-  if (selectedOption) {
-    selectedOption.removeAttribute('selected');
+    targetValue = selectedOpts[0] ? selectedOpts[0].value : selectTag.getAttribute('data-placeholder');
+  } else {
+    target.classList.add('selected');
+    targetOption.setAttribute('selected', true);
   }
 
-  target.classList.add('selected');
-  targetOption[0].setAttribute('selected', true);
-  selectionDiv.setAttribute('value', targetOption[0].value);
-  selectionDiv.textContent = selectedValue;
+  if (isMultiple && selectedOptions().length > 1) {
+    targetValue += '...';
+  }
 
-  selectTag.dispatchEvent(new Event('change'));
+  selectionDiv.setAttribute('value', targetValue);
+
+  if (opts.showValue) {
+    selectionDiv.textContent = targetValue;
+  }
 
   if (opts.allowClear) {
     fakeSelect.firstChild.classList.remove('hidden');
   }
+
+  if (singleSelection) {
+    closeSelects();
+  }
+
+  selectTag.dispatchEvent(new Event('change'));
 };

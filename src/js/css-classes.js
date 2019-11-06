@@ -1,5 +1,6 @@
 export default (opts) => {
   const classNamespace = (opts && opts.classNamespace) || 'simple-';
+
   return {
     classNamespace,
     classCheckmark: `${classNamespace}checkmark`,
