@@ -3,8 +3,12 @@ $simple-checkbox-primary-color: $simple-primary-color !default;
 $simple-checkbox-hover-color: $simple-hover-color !default;
 $simple-checkbox-disabled-color: $simple-disabled-color !default;
 $simple-checkbox-size: $simple-button-size !default;
-$simple-checkbox-border-radius: $simple-border-radius;
+$simple-checkbox-border-width: $simple-border-width !default;
+$simple-checkbox-border-style: $simple-border-style !default;
+$simple-checkbox-border-color: $simple-border-color !default;
+$simple-checkbox-border-radius: $simple-border-radius !default;
 $simple-checkbox-animation-speed: $simple-animation-speed !default;
+$simple-checkmark-icon-color: $simple-icon-color !default;
 
 @mixin simple-checkbox($namespace: $simple-namespace, $prefix: #{$namespace}checkbox) {
   .#{$prefix}-container {
@@ -13,8 +17,13 @@ $simple-checkbox-animation-speed: $simple-animation-speed !default;
     width: $simple-checkbox-size;
     height: $simple-checkbox-size;
     background-color: $simple-checkbox-primary-color;
-    border-radius: $simple-checkbox-border-radius;
     cursor: pointer;
+    border: {
+      width: $simple-select-border-width;
+      style: $simple-select-border-style;
+      color: $simple-select-border-color;
+      radius: $simple-select-border-radius;
+    };
 
     &:hover {
       background-color: $simple-checkbox-hover-color;
@@ -32,17 +41,22 @@ $simple-checkbox-animation-speed: $simple-animation-speed !default;
       opacity: 0;
       pointer-events: none;
       transition: opacity $simple-checkbox-animation-speed ease;
+
       &::after {
         position: absolute;
-        content: $simple-checkmark-icon;
+        content: '';
         top: 50%;
         left: 50%;
         width: $simple-checkbox-size * $simple-checkmark-multiplier;
         height: $simple-checkbox-size * $simple-checkmark-multiplier;
+        background-color: $simple-checkmark-icon-color;
+        -webkit-mask: $simple-checkmark-icon no-repeat 50% 50%;
+        mask: $simple-checkmark-icon no-repeat 50% 50%;
+        -webkit-mask-size: cover;
+        mask-size: cover;
         transform: translate(-50%, -50%);
       }
     }
-
 
     input[type="checkbox"][checked] + .#{$namespace}checkmark {
       opacity: 1;

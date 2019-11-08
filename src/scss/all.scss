@@ -1,6 +1,6 @@
-@import "simple-form-elements";
+@import 'simple-form-elements';
 
-@include simple-checkbox();
-@include simple-file-input();
-@include simple-radio-button();
-@include simple-select();
+@include simple-checkbox;
+@include simple-file-input;
+@include simple-radio-button;
+@include simple-select;

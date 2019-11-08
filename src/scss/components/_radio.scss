@@ -2,8 +2,11 @@ $simple-radio-button-primary-color: $simple-primary-color !default;
 $simple-radio-button-hover-color: $simple-hover-color !default;
 $simple-radio-disabled-color: $simple-disabled-color !default;
 $simple-radio-button-size: $simple-button-size !default;
+$simple-radio-border-width: $simple-border-width !default;
+$simple-radio-border-style: $simple-border-style !default;
+$simple-radio-border-color: $simple-border-color !default;
 $simple-radio-border-radius: $simple-border-radius !default;
-$simple-radio-button-icon-color: salmon !default;
+$simple-radio-icon-color: $simple-icon-color !default;
 $simple-radio-button-animation-speed: $simple-animation-speed !default;
 
 @mixin simple-radio-button($namespace: $simple-namespace, $prefix: #{$namespace}radio) {
@@ -13,8 +16,13 @@ $simple-radio-button-animation-speed: $simple-animation-speed !default;
     width: $simple-radio-button-size;
     height: $simple-radio-button-size;
     background-color: $simple-radio-button-primary-color;
-    border-radius: $simple-radio-border-radius;
     cursor: pointer;
+    border: {
+      width: $simple-select-border-width;
+      style: $simple-select-border-style;
+      color: $simple-select-border-color;
+      radius: $simple-select-border-radius;
+    };
 
     &:hover {
       background-color: $simple-radio-button-hover-color;
@@ -40,8 +48,11 @@ $simple-radio-button-animation-speed: $simple-animation-speed !default;
         left: 50%;
         width: $simple-radio-button-size * $simple-radiomark-multiplier;
         height: $simple-radio-button-size * $simple-radiomark-multiplier;
-        background-color: $simple-radio-button-icon-color;
-        border-radius: 50%;
+        background-color: $simple-radio-icon-color;
+        -webkit-mask: $simple-radio-icon no-repeat 50% 50%;
+        mask: $simple-radio-icon no-repeat 50% 50%;
+        -webkit-mask-size: cover;
+        mask-size: cover;
         transform: translate(-50%, -50%);
       }
     }
