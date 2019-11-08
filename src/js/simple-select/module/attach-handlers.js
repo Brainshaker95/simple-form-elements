@@ -9,7 +9,7 @@ export default (selectTag, opts) => {
   selectContainer.getElementsByClassName('selection')[0].addEventListener('click', (event) => toggleSelect(event, opts));
 
   Array.from(selectContainer.getElementsByClassName('option')).forEach((option) => {
-    option.addEventListener('click', (event) => selectOption(event.currentTarget, opts));
+    option.addEventListener('click', (event) => selectOption(event, opts));
   });
 
   if (opts.allowClear) {
@@ -17,6 +17,12 @@ export default (selectTag, opts) => {
   }
 
   if (opts.closeOnDocumentClick) {
-    document.addEventListener('click', (event) => closeSelects(event.target));
+    document.addEventListener('click', (event) => {
+      if (event.ctrlKey && event.target.classList.contains('option')) {
+        return;
+      }
+
+      closeSelects();
+    });
   }
 };

@@ -1,4 +1,4 @@
-import updatePath from "../module/update-path";
+import updatePath from '../module/update-path';
 import config from '../config';
 
 export default (fileTag, opts) => {
@@ -12,5 +12,5 @@ export default (fileTag, opts) => {
 
   updatePath(fileTag, options);
 
-  fileTag.dispatchEvent(new Event('change'));
+  fileTag.dispatchEvent(new Event('clear'));
 };

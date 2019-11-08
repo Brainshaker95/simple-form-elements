@@ -5,4 +5,5 @@ export default {
   closeOnDocumentClick: true,
   closeOnOpenAnother: true,
   placeholder: null,
+  showValue: true,
 };
