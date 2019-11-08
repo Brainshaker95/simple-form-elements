@@ -3,7 +3,7 @@ import generateMarkup from '../module/generate-markup';
 import config from '../config';
 import addCssClasses from '../../css-classes';
 
-export default (select, opts) => {
+export default (select, opts, callback) => {
   if (!select) {
     console.error('Error: Missing required parameter 1 \'select\'');
     return;
@@ -18,4 +18,8 @@ export default (select, opts) => {
   attachHandlers(select, options);
 
   select.dispatchEvent(new Event('init'));
+
+  if (callback) {
+    callback();
+  }
 };

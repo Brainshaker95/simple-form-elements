@@ -5,7 +5,7 @@ import clear from './methods/clear';
 import destroy from './methods/destroy';
 
 export default {
-  init: (select, opts) => init(select, opts),
+  init: (select, opts, callback) => init(select, opts, callback),
   open: (select) => open(select),
   close: (select) => close(select),
   clear: (select) => clear(select),

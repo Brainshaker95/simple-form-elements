@@ -2,7 +2,7 @@ import attachHandlers from '../module/attach-handlers';
 import generateMarkup from '../module/generate-markup';
 import addCssClasses from '../../css-classes';
 
-export default (radio, opts) => {
+export default (radio, opts, callback) => {
   if (!radio) {
     console.error('Error: Missing required parameter 1 \'radio\'');
     return;
@@ -14,4 +14,8 @@ export default (radio, opts) => {
   attachHandlers(radio, options);
 
   radio.dispatchEvent(new Event('init'));
+
+  if (callback) {
+    callback();
+  }
 };

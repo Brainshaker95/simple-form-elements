@@ -81,7 +81,7 @@ ___
 ### Methods
 
 ```js
-  init(select, opts)
+  init(select, opts, callback)
   open(select)
   close(select)
   clear(select)
@@ -120,7 +120,7 @@ ___
 ### Methods
 
 ```js
-  init(checkbox, opts)
+  init(checkbox, opts, callback)
   check(checkbox)
 ```
 
@@ -136,7 +136,7 @@ ___
 ### Methods
 
 ```js
-  init(radio, opts)
+  init(radio, opts, callback)
   check(radio, opts)
 ```
 
@@ -152,7 +152,7 @@ ___
 ### Methods
 
 ```js
-  init(file, opts)
+  init(file, opts, callback)
   clear(file, opts)
 ```
 

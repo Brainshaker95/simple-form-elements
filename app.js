@@ -75,6 +75,8 @@ document.addEventListener('DOMContentLoaded', () => {
       closeOnOpenAnother: false,
       placeholder: 'Simple Select',
       showValue: true,
+    }, () => {
+      console.log('I\'m a callback');
     });
 
     select.addEventListener('init', () => {
