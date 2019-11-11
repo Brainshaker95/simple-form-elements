@@ -6,6 +6,7 @@ export default (selectTag, opts) => {
   const optionTags = theSelectTag.getElementsByTagName('option');
   const selectedOptions = Array.from(optionTags).filter((optionTag) => optionTag.hasAttribute('selected'));
   const hasPlaceholder = theSelectTag.hasAttribute('data-placeholder');
+  const isDisabled = theSelectTag.hasAttribute('disabled');
   const isMultiple = theSelectTag.hasAttribute('multiple');
   let clearButton;
   let selection;
@@ -18,12 +19,16 @@ export default (selectTag, opts) => {
     fakeSelect.classList.add('mutiple');
   }
 
+  if (isDisabled) {
+    fakeSelect.classList.add('disabled');
+  }
+
   theSelectTag.parentNode.insertBefore(selectContainer, theSelectTag);
   selectContainer.appendChild(theSelectTag);
 
   selectContainer.appendChild(fakeSelect);
 
-  if (opts.allowClear) {
+  if (opts.allowClear && !isDisabled) {
     clearButton = document.createElement('i');
     clearButton.classList.add('clear');
     fakeSelect.appendChild(clearButton);
@@ -47,7 +52,7 @@ export default (selectTag, opts) => {
       selection = opts.placeholder || '...';
     }
 
-    if (opts.allowClear) {
+    if (opts.allowClear && !isDisabled) {
       clearButton.classList.add('hidden');
     }
   }

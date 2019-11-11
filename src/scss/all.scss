@@ -1,5 +1,9 @@
 @import 'simple-form-elements';
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 @include simple-checkbox;
 @include simple-file-input;
 @include simple-radio-button;

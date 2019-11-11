@@ -161,6 +161,7 @@ ___
 ```js
 const opts = {
   allowClear: false,
+  animateMultiplePath: true,
   placeholder: 'No file selected',
 }
 ```

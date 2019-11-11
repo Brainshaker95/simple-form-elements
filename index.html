@@ -19,23 +19,28 @@
             <option value="Test Value 2">Test Value 2</option>
             <option value="Test Value 3" selected>Test Value 3</option>
             <option value="Test Value 4">Test Value 4</option>
-            <option value="Test Value 5">Test Value 5</option>
+            <option value="Test Value 5" selected>Test Value 5</option>
             <option value="Test Value 6" disabled>Test Value 6</option>
             <option value="Test Value 7">Test Value 7</option>
         </select>
-        <select class="simple-select" name="select3">
+        <select class="simple-select" name="select3"  disabled>
             <option value="Test Value 1">Test Value 1</option>
             <option value="Test Value 2">Test Value 2</option>
         </select>
       </div>
 
-      <div class="row" style="margin-top: 3rem;">
+      <div class="row" style="margin-top: 1.3rem;">
+        <input type="file" name="file1" class="simple-file">
+        <input type="file" name="file2" class="simple-file" data-placeholder="Select your files" multiple>
+        <input type="file" name="file2" class="simple-file" disabled>
+      </div>
+
+      <div class="row">
         <input type="checkbox" name="checkbox1" class="simple-checkbox">
         <input type="checkbox" name="checkbox2" class="simple-checkbox" checked>
         <input type="checkbox" name="checkbox3" class="simple-checkbox" checked disabled>
         <input type="checkbox" name="checkbox4" class="simple-checkbox">
         <input type="checkbox" name="checkbox5" class="simple-checkbox">
-        <input type="checkbox" name="checkbox6" class="simple-checkbox" disabled>
       </div>
 
       <div class="row">
@@ -45,11 +50,6 @@
         <input type="radio" name="group1" value="Test Value 4" class="simple-radio" disabled>
         <input type="radio" name="group1" value="Test Value 5" class="simple-radio">
       </div>
-
-      <input type="file" name="file1" class="simple-file" data-placeholder="Simple fileinput">
-      <input type="file" name="file2" class="simple-file">
-
-      <input type="submit">
     </form>
 
     <script src="./dist/app.js"></script>

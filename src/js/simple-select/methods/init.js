@@ -15,7 +15,10 @@ export default (select, opts, callback) => {
   });
 
   generateMarkup(select, options);
-  attachHandlers(select, options);
+
+  if (!select.hasAttribute('disabled')) {
+    attachHandlers(select, options);
+  }
 
   select.dispatchEvent(new Event('init'));
 

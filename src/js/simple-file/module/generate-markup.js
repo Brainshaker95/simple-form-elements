@@ -7,6 +7,10 @@ export default (fileTag, opts) => {
   fileContainer.classList.add(opts.classFileContainer);
   path.classList.add('path');
 
+  if (theFileTag.hasAttribute('multiple')) {
+    fileContainer.classList.add('multiple');
+  }
+
   theFileTag.parentNode.insertBefore(fileContainer, theFileTag);
   fileContainer.appendChild(theFileTag);
 

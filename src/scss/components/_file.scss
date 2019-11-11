@@ -7,13 +7,20 @@ $simple-file-border-color: $simple-border-color !default;
 $simple-file-border-radius: $simple-border-radius !default;
 $simple-file-animation-speed: $simple-animation-speed !default;
 $simple-file-icon-color: $simple-icon-color !default;
-$simple-file-width: 260px !default;
+$simple-file-width: 256px !default;
 $simple-file-height: 34px !default;
+
+@keyframes translatePath {
+  to {
+    transform: translate(calc(-100% + -#{$simple-file-width / 2}), -50%);
+  }
+}
 
 @mixin simple-file-input($namespace: $simple-namespace, $prefix: #{$namespace}file) {
   .#{$prefix}-container {
-    display: block;
+    display: inline-block;
     position: relative;
+    overflow: hidden;
     width: $simple-file-width;
     height: $simple-file-height;
     background-color: $simple-file-primary-color;
@@ -36,6 +43,19 @@ $simple-file-height: 34px !default;
     &.disabled {
       background-color: $simple-file-disabled-color;
       cursor: default;
+    }
+
+    &.multiple {
+      .path.animated {
+        animation-play-state: paused;
+      }
+
+      &:hover .path.animated {
+        overflow: visible;
+        animation: translatePath 5s infinite linear;
+        animation-play-state: running;
+        transform: translate($simple-file-width / 2, -50%);
+      }
     }
 
     .path {

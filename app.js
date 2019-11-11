@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     simpleFile.init(file, {
       ...simpleElementsConfig,
       allowClear: true,
-      placeholder: 'Simple fileinput 2',
+      placeholder: 'Simple File',
     });
 
     file.addEventListener('init', () => {

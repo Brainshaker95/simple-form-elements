@@ -6,7 +6,7 @@ $simple-select-disabled-color: $simple-disabled-color !default;
 $simple-select-size: $simple-button-size !default;
 $simple-select-border-radius: $simple-border-radius;
 $simple-select-animation-speed: $simple-animation-speed !default;
-$simple-select-width: 260px !default;
+$simple-select-width: 256px !default;
 $simple-select-height: 34px !default;
 $simple-select-text-color: $simple-text-color !default;
 $simple-select-text-hover-color: $simple-text-hover-color !default;
@@ -21,6 +21,7 @@ $simple-select-icon-color: $simple-icon-color !default;
   .#{$prefix}-container {
     display: inline-block;
     position: relative;
+    vertical-align: top;
     width: 100%;
     max-width: $simple-select-width;
     outline: none;
@@ -42,6 +43,15 @@ $simple-select-icon-color: $simple-icon-color !default;
         color: $simple-select-border-color;
         radius: $simple-select-border-radius;
       };
+
+      &.disabled {
+        background-color: $simple-select-disabled-color;
+
+        .selection {
+          background-color: $simple-select-disabled-color;
+          cursor: default;
+        }
+      }
     }
 
     .clear {
@@ -70,19 +80,13 @@ $simple-select-icon-color: $simple-icon-color !default;
         transition: transform $simple-select-animation-speed ease;
       }
 
+      &:hover::after {
+        transform: scale(1.25) rotate(90deg);
+      }
+
       &.hidden {
         opacity: 0;
         pointer-events: none;
-      }
-
-      &:hover {
-        &::after {
-          transform: scale(1.25) rotate(90deg);
-        }
-
-        + .selection {
-          background-color: $simple-select-primary-color;
-        }
       }
     }
 
