@@ -24,6 +24,7 @@ $simple-file-height: 34px !default;
     width: $simple-file-width;
     height: $simple-file-height;
     background-color: $simple-file-primary-color;
+    user-select: none;
     cursor: pointer;
     border: {
       width: $simple-select-border-width;

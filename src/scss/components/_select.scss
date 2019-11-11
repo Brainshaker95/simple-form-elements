@@ -25,6 +25,7 @@ $simple-select-icon-color: $simple-icon-color !default;
     width: 100%;
     max-width: $simple-select-width;
     outline: none;
+    user-select: none;
 
     &:focus .selection {
       background-color: $simple-select-hover-color;

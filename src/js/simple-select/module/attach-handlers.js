@@ -18,7 +18,7 @@ export default (selectTag, opts) => {
 
   if (opts.closeOnDocumentClick) {
     document.addEventListener('click', (event) => {
-      if (event.ctrlKey && event.target.classList.contains('option')) {
+      if ((event.ctrlKey || event.shiftKey) && event.target.classList.contains('option')) {
         return;
       }
 
