@@ -8,6 +8,7 @@ export default (selectTag, opts) => {
   const hasPlaceholder = theSelectTag.hasAttribute('data-placeholder');
   const isDisabled = theSelectTag.hasAttribute('disabled');
   const isMultiple = theSelectTag.hasAttribute('multiple');
+  let hasSelectionAnker;
   let clearButton;
   let selection;
 
@@ -73,6 +74,11 @@ export default (selectTag, opts) => {
 
     if (option.hasAttribute('selected')) {
       fakeOption.classList.add('selected');
+
+      if (!hasSelectionAnker) {
+        fakeOption.classList.add('selection-anker');
+        hasSelectionAnker = true;
+      }
     }
 
     if (index === optionTags.length - 1) {

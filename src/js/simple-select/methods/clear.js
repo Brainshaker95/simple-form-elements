@@ -12,8 +12,8 @@ export default (target) => {
 
   target.classList.add('hidden');
 
-  Array.from(selectTag.children).forEach((child) => child.removeAttribute('selected'));
-  Array.from(fakeSelect.children).forEach((child) => child.classList.remove('selected'));
+  Array.from(selectTag.children).forEach((optionTag) => optionTag.removeAttribute('selected'));
+  Array.from(fakeSelect.children).forEach((fakeOption) => fakeOption.classList.remove('selected', 'selection-anker'));
 
   selectTag.value = null;
   selectTag.dispatchEvent(new Event('change'));

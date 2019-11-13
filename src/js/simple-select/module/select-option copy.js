@@ -6,7 +6,6 @@ export default (event, opts) => {
   const selectTag = fakeSelect.previousElementSibling;
   const optionTags = Array.from(selectTag.options);
   const fakeOptions = Array.from(fakeSelect.querySelectorAll('.option'));
-  const selectionAnkers = fakeSelect.querySelectorAll('.selection-anker');
   const selectionDiv = fakeSelect.querySelector('.selection');
   const selectedValue = target.getAttribute('value');
   const isSelected = target.classList.contains('selected');
@@ -19,17 +18,20 @@ export default (event, opts) => {
   }
 
   const selectedOptions = () => optionTags.filter((optionTag) => optionTag.hasAttribute('selected'));
+  const selectedOpts = selectedOptions();
   const targetOption = optionTags.filter((optionTag) => optionTag.value === selectedValue)[0];
   let targetValue = targetOption.value;
 
-  const addSelectionAnker = () => {
-    selectionAnkers.forEach((opt) => opt.classList.remove('selection-anker'));
-    target.classList.add('selection-anker');
+  const deselectOption = () => {
+    target.classList.remove('selected');
+    targetOption.removeAttribute('selected');
+
+    targetValue = selectedOpts[0] ? selectedOpts[0].value : selectTag.getAttribute('data-placeholder');
   };
 
-  const selectOption = (targetOpt, fakeTargetOpt) => {
-    targetOpt.setAttribute('selected', true);
-    fakeTargetOpt.classList.add('selected');
+  const selectOption = () => {
+    target.classList.add('selected');
+    targetOption.setAttribute('selected', true);
   };
 
   const deselectOptions = () => {
@@ -38,41 +40,64 @@ export default (event, opts) => {
   };
 
   const selectOptions = () => {
-    let lowerBound;
-    let upperBound;
+    const selectedIndices = [];
+    const offsets = [];
     let targetIndex;
-    let ankerIndex;
 
-    if (!selectionAnkers.length) {
-      addSelectionAnker();
+    if (!fakeSelect.querySelectorAll('.selection-anker').length) {
+      target.classList.add('selection-anker');
     }
 
     fakeOptions.forEach((fakeOption, index) => {
       if (fakeOption.getAttribute('value') === selectedValue) {
         targetIndex = index;
+
+        if (fakeSelect.querySelectorAll('.selection-anker').length && isSelected) {
+          fakeOptions.forEach((fakeOpt) => fakeOpt.classList.remove('selection-anker'));
+          target.classList.add('selection-anker');
+        }
       }
 
-      if (fakeOption.classList.contains('selection-anker')) {
-        ankerIndex = index;
+      if (fakeOption.classList.contains('selected')) {
+        selectedIndices.push(index);
       }
     });
 
-    if (ankerIndex < targetIndex) {
-      lowerBound = ankerIndex;
-      upperBound = targetIndex;
-    } else if (ankerIndex > targetIndex) {
-      lowerBound = targetIndex;
-      upperBound = ankerIndex;
-    } else {
-      lowerBound = targetIndex;
-      upperBound = targetIndex;
+    if (selectedIndices.length) {
+      deselectOptions();
+
+      selectedIndices.forEach((selectedIndex) => {
+        offsets.push(selectedIndex - targetIndex);
+      });
+
+      let offset = offsets.reduce((a, b) => (Math.abs(a) < Math.abs(b) ? a : b));
+
+      // if (offsets.filter((o) => o > 0).length) {
+      //   offset = Math.max(...offsets);
+      // }
+
+      if (offset === 0) {
+        offset = offsets.reduce((a, b) => (Math.abs(a) > Math.abs(b) ? a : b));
+      }
+
+      if (fakeSelect.querySelectorAll('.selection-anker').length) {
+        const selectionAnkerIndex = fakeOptions.findIndex((fakeOption) => fakeOption.classList.contains('selection-anker'));
+        console.log(selectionAnkerIndex);
+
+        offset -= selectionAnkerIndex;
+      }
+
+      while (offset !== 0) {
+        const indexToSelect = targetIndex + offset;
+
+        fakeOptions[indexToSelect].classList.add('selected');
+        optionTags[indexToSelect].setAttribute('selected', true);
+
+        offset += offset > 0 ? -1 : 1;
+      }
     }
 
-    fakeOptions.forEach((fakeOption, index) => {
-      if (index >= lowerBound && index <= upperBound) {
-        selectOption(optionTags[index], fakeOptions[index]);
-      }
-    });
+    selectOption();
   };
 
   if (singleSelection) {
@@ -80,20 +105,11 @@ export default (event, opts) => {
   }
 
   if (isMultiple && isSelected && event.ctrlKey) {
-    target.classList.remove('selected');
-    targetOption.removeAttribute('selected');
-
-    const selectedOpts = selectedOptions();
-
-    targetValue = selectedOpts[0] ? selectedOpts[0].value : selectTag.getAttribute('data-placeholder');
-
-    addSelectionAnker();
+    deselectOption();
   } else if (isMultiple && event.shiftKey) {
-    deselectOptions();
     selectOptions();
   } else {
-    selectOption(targetOption, target);
-    addSelectionAnker();
+    selectOption();
   }
 
   if (isMultiple && selectedOptions().length > 1) {
